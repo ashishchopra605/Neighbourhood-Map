@@ -12,7 +12,7 @@
 - [Quick start](#quick-start)
 - [Documentation](#documentation)
 - [Usage](#usage)
-- [Helpful Resources](#Resources)
+- [Resources](#Resources)
 
 ## quick-start
 - Application utilizes Google's Map API and at least one additional third-party "data API". All data requests are retrieved in an asynchronous manner. In the event of a failed data retrieval errors are handled gracefully.
