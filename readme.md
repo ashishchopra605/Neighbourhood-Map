@@ -12,7 +12,7 @@
 - [Quick start](#quick-start)
 - [Documentation](#documentation)
 - [Usage](#usage)
-- [Helpful Resources](#Helpful-Resources)
+- [Helpful Resources](#Resources)
 
 ## quick-start
 - Application utilizes Google's Map API and at least one additional third-party "data API". All data requests are retrieved in an asynchronous manner. In the event of a failed data retrieval errors are handled gracefully.
@@ -52,7 +52,7 @@ Framework Used: [Knockout](http://knockoutjs.com/)
 
 - This web app is also responsive.
 
-## Helpful-Resources
+## Helpful Resources
 - [Foursquare API](https://developer.foursquare.com/)
 - [MediaWikiAPI for Wikipedia](https://www.mediawiki.org/wiki/API:Main_page)
 - [Google Maps Street View Service](https://developers.google.com/maps/documentation/javascript/streetview)
