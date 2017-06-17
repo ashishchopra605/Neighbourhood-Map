@@ -52,7 +52,7 @@ Framework Used: [Knockout](http://knockoutjs.com/)
 
 - This web app is also responsive.
 
-## Helpful Resources
+## Resources
 - [Foursquare API](https://developer.foursquare.com/)
 - [MediaWikiAPI for Wikipedia](https://www.mediawiki.org/wiki/API:Main_page)
 - [Google Maps Street View Service](https://developers.google.com/maps/documentation/javascript/streetview)
