@@ -1,10 +1,9 @@
 
-<h1>About</h1>
+# About
+ This is my submission for Project P5: Neighborhood Map, part of Udacity's Full Stack Web Developer Nanodegree.
 
-<p>This is my submission for Project P5: Neighborhood Map, part of Udacity's Full Stack Web Developer Nanodegree.</p>
-
-<h1>project Overview</h1>
-<p>You will develop a single page application featuring a map of your neighborhood</p>
+# project Overview
+ You will develop a single page application featuring a map of your neighborhood.
 
 
 ## table of contents
