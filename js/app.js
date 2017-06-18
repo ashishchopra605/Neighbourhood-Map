@@ -161,11 +161,11 @@ initMap = function() {
     //mouseover event handler
     mouseoverseticon = function() {
     	this.setIcon(highlightedIcon);
-    }
+    };
      //mouseout event handler
      mouseoutseticon = function() {
      	this.setIcon(marker.icon);
-     }
+     };
      //click event handler
      populatemarker = function(){
      	getFourSquareData(this);
@@ -175,7 +175,7 @@ initMap = function() {
      	setTimeout(function() {
      		self.setAnimation(null);
      	}, 2100);
-     }
+     };
 
     // The following group uses the location array to create an array of markers on initialize.
     for (var i = 0; i < locations.length; i++) {
@@ -393,15 +393,15 @@ var AppViewModel = function() {
     //toggle hamburger
     open = function(){
     	console.log(this.setvisible());
-    	if(this.setvisible() == true ){
+    	if(this.setvisible() === true ){
     		this.setvisible(false);
     	}
     	else {
-    		if(this.setvisible() == false){
+    		if(this.setvisible() === false){
     			this.setvisible(true);
     		}
     	}
-    }
+    };
 
     //search filter function
     self.search = ko.computed(function() {
