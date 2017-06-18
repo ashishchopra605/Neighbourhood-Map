@@ -143,7 +143,7 @@ initMap = function() {
             }
         ]
     }
-]
+];
 
         // Constructor creates a new map - only center and zoom are required.
         map = new google.maps.Map(document.getElementById('map'), {
@@ -172,6 +172,24 @@ initMap = function() {
         // Create a "highlighted location" marker color for when the user
         // mouses over the marker.
         var highlightedIcon = makeMarkerIcon('FFFF24');
+        //mouseover event handler
+        mouseoverseticon = function() {
+             this.setIcon(highlightedIcon);
+         }
+         //mouseout event handler
+         mouseoutseticon = function() {
+         	this.setIcon(marker.icon);
+         }
+         //click event handler
+         populatemarker = function(){
+         	getFourSquareData(this);
+            populateInfoWindow(this, largeInfowindow);
+            this.setAnimation(google.maps.Animation.BOUNCE);
+            var self = this;
+            setTimeout(function() {
+              self.setAnimation(null);
+            }, 2000);
+         }
 
         // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
@@ -194,36 +212,20 @@ initMap = function() {
 
           // Push the marker to our array of markers.
           markers.push(marker);
-          //console.log('mar ' + marker.content);
+
           appViewModel.location()[i].marker = markers[i];
           // Create an onclick event to open the large infowindow at each marker.
-          marker.addListener('click', function() {
-            getFourSquareData(this);
-            populateInfoWindow(this, largeInfowindow);
-            this.setAnimation(google.maps.Animation.BOUNCE);
-            var self = this;
-            setTimeout(function() {
-              self.setAnimation(null);
-            }, 2000);
-
-          });
-
+           marker.addListener('click', populatemarker);
           // Two event listeners - one for mouseover, one for mouseout,
           // to change the colors back and forth.
-
-
-          marker.addListener('mouseover', function() {
-            this.setIcon(highlightedIcon);
-          });
-          marker.addListener('mouseout', function() {
-            this.setIcon(marker.icon);
-          });
+           marker.addListener('mouseover', mouseoverseticon);
+           marker.addListener('mouseout', mouseoutseticon);
         }
 
         document.getElementById('show-listings').addEventListener('click', showListings);
         document.getElementById('hide-listings').addEventListener('click', hideListings);
 
-      }
+      };
 
       var wikiUrl;
       var wikiElem = '';
@@ -242,14 +244,11 @@ populateInfoWindow = function(marker, infowindow) {
    url: wikiUrl,
    dataType: "jsonp",
  }).done(function( response ) {
-  //console.log(response);
+
   var article = response[2][0];
   var url = response[3][0];
   marker.wikiElem=article;
   marker.url = url;
-  //console.log(marker.url);
-  //console.log(marker.title);
-  //console.log(marker.wikiElem);
 
   clearTimeout(wikiRequestTimeout);
             // Use streetview service to get the closest streetview image within
@@ -257,8 +256,8 @@ populateInfoWindow = function(marker, infowindow) {
   streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
 
 }).fail(function(jqXHR, textStatus) {
-                    if(jqXHR.status == 0) {
-                        alert('You are offline!\n Please check your network.');
+                    if(jqXHR.status === 0) {
+                        alert('You are offline!n Please check your network.');
                     } else if(jqXHR.status == 404) {
                         alert('HTML Error Callback');
                     }
@@ -334,13 +333,13 @@ populateInfoWindow = function(marker, infowindow) {
 
 
           }
-        }
+        };
           // Open the infowindow on the correct marker.
 
           infowindow.open(map, marker);
 
                 }
-              }
+              };
 
 var googleError = function(){
     alert("Your Google API Key is not valid");
@@ -352,17 +351,17 @@ var googleError = function(){
 getFourSquareData= function(marker) {
 
 var apiURL = 'https://api.foursquare.com/v2/venues/';
-var foursquareClientID = '2EYFKBM53RBTDEZBFS2DOQK4GGNNAYMNHEJMM1HXGFTR5Y1O'
+var foursquareClientID = '2EYFKBM53RBTDEZBFS2DOQK4GGNNAYMNHEJMM1HXGFTR5Y1O';
 var foursquareSecret ='1W2EVJ1RMMQH55NOVKPQTNVRAOY2AWDRXKWOXLDXRRM4JMQZ';
 var foursquareVersion = '20170112';
 var venueFoursquareID = marker.location_id;
-console.log(marker.location_id);
+
 
 var foursquareURL = apiURL + venueFoursquareID + '?client_id=' + foursquareClientID +  '&client_secret=' + foursquareSecret +'&v=' + foursquareVersion;
 $.ajax({
   url: foursquareURL,
   success: function(data) {
-    console.log(data);
+
     var response = data.response.venue;
 
      var address = response.location.formattedAddress[0];
@@ -370,17 +369,17 @@ $.ajax({
      var state = response.location.formattedAddress[2];
      var country = response.location.formattedAddress[3];
      Address = address + ',' + city + ',' + state + ',' + country;
-    console.log(Address);
+
   }
 }).fail(function(jqXHR, textStatus) {
-                    if(jqXHR.status == 0) {
-                        alert('You are offline!\n Please check your network.');
+                    if(jqXHR.status === 0) {
+                        alert('You are offline!n Please check your network.');
                     } else if(jqXHR.status == 404) {
                         alert('HTML Error Callback');
                     }
                     else alert( "Request failed: " + textStatus + "<br>");
                 });
-}
+};
 
 // This function will loop through the markers array and display them all.
 showListings = function() {
@@ -391,14 +390,14 @@ showListings = function() {
       bounds.extend(markers[i].position);
     }
     map.fitBounds(bounds);
-  }
+  };
 
 // This function will loop through the listings and hide them all.
 hideListings = function() {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
-}
+};
 // This function takes in a COLOR, and then creates a new marker
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
 // of 0, 0 and be anchored at 10, 34).
@@ -411,7 +410,7 @@ makeMarkerIcon = function(markerColor) {
     new google.maps.Point(10, 34),
     new google.maps.Size(21,34));
   return markerImage;
-}
+};
 //View Model
 var AppViewModel = function() {
   var self = this;
@@ -437,7 +436,7 @@ var AppViewModel = function() {
         if(item.title.toLowerCase().indexOf(filter) != -1)
         {
           if(item.marker){
-              item.marker.setVisible(true)
+              item.marker.setVisible(true);
               return true;}
           else{ console.log('marker not found!');}
         }
@@ -462,7 +461,7 @@ var AppViewModel = function() {
         google.maps.event.trigger(markers[title.marker.id], 'click');
       }
     }
-  }
+  };
 
 };
 var appViewModel = new AppViewModel();
