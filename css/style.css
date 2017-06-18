@@ -4,10 +4,11 @@ body {
     height: 100%;
     width: 100%;
 }
-a#menu svg {
+a#menu img {
     width: 40px;
     fill: #000;
-}
+    cursor: pointer;
+  }
 .project-heading {
     text-align: center;
 }
@@ -46,12 +47,15 @@ main {
     height: 200px;
 }
 main {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+
 }
 #map {
     width: 100%;
     height: 93%;
+    flex-grow: 1;
 }
 ul li:hover {
     background: #4242f4;
@@ -81,34 +85,25 @@ body {
 /* Since we're mobile-first, by default, the drawer is hidden. */
 
 nav {
-    width: 300px;
+    width: 600px;
     height: 100%;
     position: absolute;
     /* This trasform moves the drawer off canvas. */
-    
-    -webkit-transform: translate(-300px, 0);
-    transform: translate(-300px, 0);
-    /* Optionally, we animate the drawer. */
-    
-    transition: transform 0.3s ease;
+
     overflow: scroll;
 }
-nav.open {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-}
-/* If there is enough space (> 600px), we keep the drawer open all the time. */
 
-@media (min-width: 600px) {
+/* If there is enough space (> 200px), we keep the drawer open all the time. */
+
+@media (min-width: 200px) {
     /* We open the drawer. */
-    
+
     nav {
+        width: 300px;
         position: relative;
-        -webkit-transform: translate(0, 0);
-        transform: translate(0, 0);
     }
     /* We use Flexbox on the parent. */
-    
+
     body {
         display: -webkit-flex;
         display: flex;
@@ -123,13 +118,13 @@ nav.open {
         width: auto;
         height: auto;
         /* Flex-grow streches the main content to fill all available space. */
-        
+
         flex-grow: 1;
     }
     main {
         width: auto;
         /* Flex-grow streches the main content to fill all available space. */
-        
+
         flex-grow: 1;
     }
 }

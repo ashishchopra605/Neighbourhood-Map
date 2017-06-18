@@ -421,8 +421,8 @@ var AppViewModel = function() {
 
     		return ko.utils.arrayFilter(self.location(), function(item) {
 
-    			if(item.title.toLowerCase().indexOf(filter) != -1)
-    			{
+    			if(item.title.toLowerCase().indexOf(filter) != -1) {
+    				
     				if(item.marker) {
 
     					item.marker.setVisible(true);
