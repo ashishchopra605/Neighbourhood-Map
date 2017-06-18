@@ -391,7 +391,7 @@ var AppViewModel = function() {
 	self.setvisible = ko.observable(true);
 
     //toggle hamburger
-    open = function(){
+    toggle = function(){
     	console.log(this.setvisible());
     	if(this.setvisible() === true ){
     		this.setvisible(false);
