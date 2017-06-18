@@ -175,11 +175,11 @@ initMap = function() {
         //mouseover event handler
         mouseoverseticon = function() {
              this.setIcon(highlightedIcon);
-         }
+         };
          //mouseout event handler
          mouseoutseticon = function() {
          	this.setIcon(marker.icon);
-         }
+         };
          //click event handler
          populatemarker = function(){
          	getFourSquareData(this);
@@ -189,7 +189,7 @@ initMap = function() {
             setTimeout(function() {
               self.setAnimation(null);
             }, 2000);
-         }
+         };
 
         // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
